@@ -1,0 +1,12 @@
+name: rcon_dart
+description: A dart RCON client.
+version: 1.0.0
+# homepage: https://www.example.com
+author: Nguyen Marc <nguyen_marc@live.fr>
+
+environment:
+  sdk: '>=2.4.0 <3.0.0'
+
+dev_dependencies:
+  analyzer: ^0.38.2
+  pedantic: ^1.8.0+1
