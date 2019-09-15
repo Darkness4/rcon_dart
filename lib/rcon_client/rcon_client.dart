@@ -113,29 +113,24 @@ class RconClient {
   /// ```
   static Future<RconClient> connect(void Function(String) onData,
       {dynamic host, int port, String password}) async {
-    try {
-      print("Trying to connect...");
+    print("Trying to connect...");
 
-      final RconClient client = RconClient(
-        password: password,
-        socket: await Socket.connect(host, port),
-      );
+    final RconClient client = RconClient(
+      password: password,
+      socket: await Socket.connect(host, port),
+    );
 
-      // Add a reader
-      client._socket.listen(
-        (Uint8List packet) => dataListener(packet, onData),
-        cancelOnError: false,
-        onDone: client.exit,
-        onError: print,
-      );
+    // Add a reader
+    client._socket.listen(
+      (Uint8List packet) => dataListener(packet, onData),
+      cancelOnError: false,
+      onDone: client.exit,
+      onError: print,
+    );
 
-      client._authenticate();
+    client._authenticate();
 
-      return client;
-    } catch (e) {
-      print("Unable to connect: $e");
-    }
-    return null;
+    return client;
   }
 
   /// Reponse to a data, usually a print.
