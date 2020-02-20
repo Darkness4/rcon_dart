@@ -5,17 +5,24 @@ A RCON client based on Dart.
 ## Using
 
 ```dart
-// Using print as the reader
-RconClient client = RconClient.connect(print, 'localhost', '25575', 'password');
+final RconClient client = RconClient();
+final Stream<String> response = client.connect(
+  'localhost',
+  25575,
+  'password',
+);
+
+// Print on data
+response.listen(print);
 
 // Send one command
-client.send('help');
+client.send("help");
 
-// Send each data from standard input
+// STDIN to Client
 await stdin
-  .transform(utf8.decoder)
-  .transform(const LineSplitter())
-  .forEach(client.send);
+    .transform(utf8.decoder)
+    .transform(const LineSplitter())
+    .forEach(client.send);
 ```
 
 ## LICENSE

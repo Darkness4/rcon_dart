@@ -1,1 +1,1 @@
-export 'rcon_client/rcon_client.dart';
+export 'src/rcon_client.dart';
